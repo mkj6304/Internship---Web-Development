@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vehicle Information Form</title>
+  <link rel="stylesheet" href="form.css">
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Vehicle & Owner Information</h2>
+    <form>
+      <h3>Owner Information</h3>
+      <div class="form-group">
+        <label for="ownerName">Full Name</label>
+        <input type="text" id="ownerName" name="ownerName" required>
+      </div>
+
+      <div class="form-group">
+        <label for="ownerEmail">Email</label>
+        <input type="email" id="ownerEmail" name="ownerEmail" required>
+      </div>
+
+      <div class="form-group">
+        <label for="ownerPhone">Phone Number</label>
+        <input type="tel" id="ownerPhone" name="ownerPhone" required>
+      </div>
+
+      <h3>Vehicle Information</h3>
+      <div class="form-group">
+        <label for="vehicleBrand">Brand</label>
+        <input type="text" id="vehicleBrand" name="vehicleBrand" required>
+      </div>
+
+      <div class="form-group">
+        <label for="vehicleModel">Model</label>
+        <input type="text" id="vehicleModel" name="vehicleModel" required>
+      </div>
+
+      <div class="form-group">
+        <label for="vehicleYear">Year</label>
+        <input type="number" id="vehicleYear" name="vehicleYear" required>
+      </div>
+
+      <div class="form-group">
+        <label for="vehicleColor">Color</label>
+        <input type="text" id="vehicleColor" name="vehicleColor">
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+</body>
+</html>
