@@ -99,7 +99,8 @@ export class News extends Component {
         console.log("Hello I am a constructor");
         this.state={
             articles: this.articles,
-            loading: false
+            loading: false,
+            page: 1
         }
     }
   async componentDidMount(){
