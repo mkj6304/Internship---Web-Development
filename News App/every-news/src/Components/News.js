@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem';
+import PropTypes from 'prop-types'
+
 
 export class News extends Component {
     articles = [
@@ -105,7 +107,7 @@ export class News extends Component {
     }
   async componentDidMount(){
     console.log(this.state.page)
-    let url = `https://newsapi.org/v2/everything?q=apple&from=2025-06-02&to=2025-06-02&sortBy=popularity&apiKey=6d4ae3c9b412423d9bc85c9410f95189&page=${this.state.page}&pageSize=8`;
+    let url = ``;
     let data = await fetch(url);
     let parsedData = await data.json();
     console.log(parsedData);
@@ -119,7 +121,7 @@ export class News extends Component {
       else{
       console.log("Clicked next");
       console.log(this.state.page);
-      let url = `https://newsapi.org/v2/everything?q=apple&from=2025-06-02&to=2025-06-02&sortBy=popularity&apiKey=6d4ae3c9b412423d9bc85c9410f95189&page=${this.state.page +1}&pageSize=8`
+      let url = ``
       let data = await fetch(url);
       let parsedData = await data.json();
       console.log(parsedData);
@@ -133,7 +135,7 @@ export class News extends Component {
       console.log("Clicked prev")
       console.log("Clicked next");
       console.log(this.state.page);
-      let url = `https://newsapi.org/v2/everything?q=apple&from=2025-06-02&to=2025-06-02&sortBy=popularity&apiKey=6d4ae3c9b412423d9bc85c9410f95189&page=${this.state.page -1}&pageSize=8`
+      let url = `""`
       let data = await fetch(url);
       let parsedData = await data.json();
       console.log(parsedData);
