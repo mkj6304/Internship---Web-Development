@@ -104,8 +104,8 @@ export class News extends Component {
         }
     }
   async componentDidMount(){
-    console.log("CDM")
-    let url = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=6d4ae3c9b412423d9bc85c9410f95189";
+    console.log(this.state.page)
+    let url = `https://newsapi.org/v2/everything?q=apple&from=2025-06-02&to=2025-06-02&sortBy=popularity&apiKey=6d4ae3c9b412423d9bc85c9410f95189&page=${this.state.page}&pageSize=8`;
     let data = await fetch(url);
     let parsedData = await data.json();
     console.log(parsedData);
@@ -113,11 +113,34 @@ export class News extends Component {
   }
 
   handlenextclick = async () => {
+      if(this.state.page+1> Math.ceil(this.state.totalResults/8)){
 
-  }
+      }
+      else{
+      console.log("Clicked next");
+      console.log(this.state.page);
+      let url = `https://newsapi.org/v2/everything?q=apple&from=2025-06-02&to=2025-06-02&sortBy=popularity&apiKey=6d4ae3c9b412423d9bc85c9410f95189&page=${this.state.page +1}&pageSize=8`
+      let data = await fetch(url);
+      let parsedData = await data.json();
+      console.log(parsedData);
+      this.setState({
+      articles: parsedData.articles,
+      page: this.state.page + 1
+      })
+  }}
 
   handleprevclick = async () => {
-    
+      console.log("Clicked prev")
+      console.log("Clicked next");
+      console.log(this.state.page);
+      let url = `https://newsapi.org/v2/everything?q=apple&from=2025-06-02&to=2025-06-02&sortBy=popularity&apiKey=6d4ae3c9b412423d9bc85c9410f95189&page=${this.state.page -1}&pageSize=8`
+      let data = await fetch(url);
+      let parsedData = await data.json();
+      console.log(parsedData);
+      this.setState({
+      articles: parsedData.articles,
+      page: this.state.page - 1
+      })
   }
 
     render() {
@@ -126,11 +149,11 @@ export class News extends Component {
        <div>
    
     <div className='container my-3'>
-    <h2>Get Daily News and Stay Up to Date with Every News</h2>
+<h1 className="text-center">Get Daily News and Stay Up to Date with Every News</h1>
     <div className="row">
-    {this.state.articles.map((element)=>{
+    {Array.isArray(this.state.articles) && this.state.articles.map((element)=>{
         return  <div className="col md-4" key={element.url}>
-        <NewsItem title={element.title?element.title.slice(0, 45):""} description={element.description?element.description.slice(0, 88):""} imageurl={element.urlToImage} newsUrl={element.url}/>
+        <NewsItem title={element.title} description={element.description} imageurl={element.urlToImage} newsUrl={element.url}/>
       </div>
         
    
@@ -139,8 +162,8 @@ export class News extends Component {
       </div>
      
      <div className="container d-flex justify-content-between">
-      <button type="button" onClick={this.handleprevclick} class="btn btn-dark">Previous</button>
-     <button type="button" onClick={this.handlenextclick} class="btn btn-dark">Next</button>
+      <button type="button" disabled={this.state.page<=1} onClick={this.handleprevclick} class="btn btn-dark">Previous</button>
+     <button type="button" disabled={this.state.page+1 > Math.ceil(this.state.totaResults/8)} onClick={this.handlenextclick} class="btn btn-dark">Next</button>
      </div>
     </div>
     </div>
